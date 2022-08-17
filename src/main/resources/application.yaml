@@ -1,3 +1,9 @@
 city:
   service:
     url: http://localhost:3030/open-city-api
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres

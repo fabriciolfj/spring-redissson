@@ -13,7 +13,7 @@ public class WeatherService {
     @Autowired
     private ExternalServiceClient client;
 
-    @Cacheable(value = "weather", key = "#zip")
+    //@Cacheable(value = "weather", key = "#zip")
     public int getWeather(int zip) {
         return 0;
     }
