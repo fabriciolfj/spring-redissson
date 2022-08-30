@@ -15,7 +15,7 @@ public class SimulacaoDurationTest {
         var sink = Sinks.many().unicast().onBackpressureBuffer();
 
         int index = 0;
-        while(index < 10000) {
+        while(index < 1_000_000) {
             sink.tryEmitNext(index);
             index++;
         }
@@ -25,7 +25,7 @@ public class SimulacaoDurationTest {
         flux.buffer(Duration.ofSeconds(1))
                 .subscribe(c -> System.out.println(c));
 
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
     }
 
     @Test

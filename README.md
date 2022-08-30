@@ -26,7 +26,29 @@
 
 ### Execute redis-cli no docker
 ```
-docker exec --it redis bash
+docker exec -it redis bash
 redis-cli
 keys *
 ```
+
+### Comandos básicos redis-cli
+- set a 1 > chave a valor 1
+- rpus users 1 2 3 > chave e uma lista
+- keys * > mostrar todas as chaves dos dados do usuário corrente
+- flushdb > limpar a base
+
+
+### Segurança redis
+- dentro do redis-cli, podemos:
+  - acl deluser default : excluir o usuário default
+  - acl nome_do_usuario : para mostrar o usuario
+  - acl list : listas os usuários
+  - acl setuser nome_do_usuario >password on (para deixar habilitado)
+  - acl setuser nome_do_usuario on (ativar o usuário)
+  - acl setuser nome_do_usuario off (desativar o usuário)
+  - logar com usuário: auth nome password
+  - acl whoami : mostrar usuário corrente
+  - auth defaut nopass : logando com usuário default sem password
+  - para dar todas as permissões ao usuário: acl setuser sam >pass123 on allcommands allkeys
+  - exigir password de todos os usuários: config set requirepass pass1234
+  - permitir usuários sem password: config set requirepass ""

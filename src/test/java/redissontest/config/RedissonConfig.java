@@ -15,7 +15,9 @@ public class RedissonConfig {
         if (Objects.isNull(redissonClient)) {
             final Config config = new Config();
             config.useSingleServer()
-                    .setAddress("redis://127.0.0.1:6379");
+                    .setAddress("redis://127.0.0.1:6379")
+                    .setUsername("sam")
+                    .setPassword("pass123");
 
             redissonClient = Redisson.create(config);
         }
