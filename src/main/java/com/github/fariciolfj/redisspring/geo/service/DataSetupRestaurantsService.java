@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.SignalType;
+
+import java.util.function.Consumer;
 
 @Service
 public class DataSetupRestaurantsService implements CommandLineRunner {
@@ -26,9 +29,12 @@ public class DataSetupRestaurantsService implements CommandLineRunner {
         map = client.getMap("usa", new TypedJsonJacksonCodec(String.class, GeoLocation.class));
 
         Flux.fromIterable(RestaurantUtil.getRestaurants())
-                .flatMap(r -> this.geo.add(r.getLongitude(), r.getLatitude(), r).thenReturn(r))
-                .flatMap(g -> this.map.fastPut(g.getZip(), GeoLocation.of(g.getLongitude(), g.getLatitude())))
-                .doFinally(s -> System.out.println("add restaurants " + s))
+                .flatMap(r -> geo.add(r.getLongitude(), r.getLatitude(), r).thenReturn(r))
+                .flatMap(g -> map.fastPut(g.getZip(), GeoLocation.of(g.getLongitude(), g.getLatitude())))
+                .doFinally(s -> System.out.println("add restaurants"))
                 .subscribe();
     }
+
+
+
 }

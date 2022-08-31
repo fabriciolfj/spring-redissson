@@ -25,8 +25,9 @@ public class RestaurantLocatorService {
     }
 
     public Flux<Restaurant> findRestaurants(final String zip) {
-        return map.get(zip)
-                .map(r -> GeoSearchArgs.from(r.getLongitude(), r.getLatitude()).radius(5, GeoUnit.MILES))
+        return map
+                .get(zip)
+                .map(r -> GeoSearchArgs.from(r.getLongitude(), r.getLatitude()).radius(4, GeoUnit.MILES))
                 .flatMap(g -> geo.search(g))
                 .flatMapIterable(Function.identity());
     }
