@@ -1,8 +1,8 @@
-package redissontest.util;
+package com.github.fariciolfj.redisspring.geo.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import redissontest.dto.Restaurant;
+import com.github.fariciolfj.redisspring.geo.dto.Restaurant;
 
 import java.io.IOException;
 import java.io.InputStream;

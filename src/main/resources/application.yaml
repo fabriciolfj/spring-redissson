@@ -3,9 +3,9 @@ city:
     url: http://localhost:3030/open-city-api
 
 spring:
-  redis:
-    username: sam
-    password: pass123
+  #redis:
+  #  username: sam
+  #  password: pass123
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/postgres
     username: postgres

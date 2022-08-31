@@ -1,4 +1,4 @@
-package redissontest.dto;
+package com.github.fariciolfj.redisspring.geo.dto;
 
 import lombok.Data;
 
