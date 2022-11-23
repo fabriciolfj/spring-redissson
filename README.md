@@ -52,3 +52,28 @@ keys *
   - para dar todas as permissões ao usuário: acl setuser sam >pass123 on allcommands allkeys
   - exigir password de todos os usuários: config set requirepass pass1234
   - permitir usuários sem password: config set requirepass ""
+
+
+# Configuração cluster
+````
+@Configuration
+public class RedisConfiguration {
+
+	final RedisProperties properties;
+
+	public RedisConfiguration(RedisProperties properties) {
+		this.properties = properties;
+	}
+
+	@Bean
+	public LettuceConnectionFactory redisConnectionFactory() {
+		LettuceClientConfiguration clientConfig = LettuceClientConfiguration.builder()
+		                                                                    .readFrom(ReadFrom.REPLICA_PREFERRED)
+		                                                                    .build();
+		RedisStaticMasterReplicaConfiguration staticMasterReplicaConfiguration = new RedisStaticMasterReplicaConfiguration(properties.getMaster().getHost(),
+		                                                                                                                   properties.getMaster().getPort());
+		properties.getSlaves().forEach(slave -> staticMasterReplicaConfiguration.addNode(slave.getHost(), slave.getPort()));
+		return new LettuceConnectionFactory(staticMasterReplicaConfiguration, clientConfig);
+	}
+
+}
