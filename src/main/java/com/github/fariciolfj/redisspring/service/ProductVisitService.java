@@ -1,5 +1,6 @@
 package com.github.fariciolfj.redisspring.service;
 
+import jakarta.annotation.PostConstruct;
 import org.redisson.api.BatchOptions;
 import org.redisson.api.RBatchReactive;
 import org.redisson.api.RScoredSortedSetReactive;
@@ -11,7 +12,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks;
 
-import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
